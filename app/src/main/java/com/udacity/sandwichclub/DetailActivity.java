@@ -3,7 +3,6 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,34 +18,6 @@ public class DetailActivity extends AppCompatActivity {
 
     private static Sandwich sandwich;
 
-    public static void showData() {
-        // GETTING LIST DATA
-
-        Log.e("-----------------------", "--------------------------------");
-        Log.e("showData: Main Name", "" + sandwich.getMainName());
-
-        if (sandwich.getAlsoKnownAs() != null)
-            for (String a : sandwich.getAlsoKnownAs())
-                Log.e("showData: Also Known As", "" + a);
-        else
-            Log.e("showData: Also Known As", "null value");
-
-        if (sandwich.getPlaceOfOrigin() != null)
-            Log.e("showData: placeOfOrigin", "" + sandwich.getPlaceOfOrigin());
-
-        if (sandwich.getDescription() != null)
-            Log.e("showData: Description", "" + sandwich.getDescription());
-
-        if (sandwich.getImage() != null)
-            Log.e("showData: Image", "" + sandwich.getImage());
-
-        if (sandwich.getIngredients() != null)
-            for (String a : sandwich.getIngredients())
-                Log.e("showData: Ingredients", "" + a);
-        else
-            Log.e("showData: Ingredients", "null value");
-
-    }
 
     private void closeOnError() {
         finish();
@@ -60,7 +31,6 @@ public class DetailActivity extends AppCompatActivity {
     private TextView descriptionTv;
 
     private void populateUI() {
-        showData();
         if (sandwich.getAlsoKnownAs() != null) {
             String temp = alsoknownasTv.getText().toString();
             for (String temp1 : sandwich.getAlsoKnownAs()) {
