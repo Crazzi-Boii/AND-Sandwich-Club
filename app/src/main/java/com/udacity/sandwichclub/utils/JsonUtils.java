@@ -32,8 +32,10 @@ public class JsonUtils {
             }
 
             String placeOfOrigin = sandwitchJobj.getString("placeOfOrigin");
-            if (placeOfOrigin != null)
+            if (placeOfOrigin.length() > 0)
                 sandwich.setPlaceOfOrigin(placeOfOrigin);
+            else
+                sandwich.setPlaceOfOrigin("Unknown");
 
             String description = sandwitchJobj.getString("description");
             if (description != null)

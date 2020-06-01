@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -52,8 +53,52 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private ImageView imageIv;
+    private TextView alsoknownasTv;
+    private TextView ingredientsTv;
+    private TextView originTv;
+    private TextView descriptionTv;
 
+    private void populateUI() {
+        showData();
+        if (sandwich.getAlsoKnownAs() != null) {
+            String temp = alsoknownasTv.getText().toString();
+            for (String temp1 : sandwich.getAlsoKnownAs()) {
+                temp = temp.concat(temp1);
+                temp = temp.concat("\n");
+            }
+            temp = temp.trim();
+            alsoknownasTv.setText(temp);
+        } else
+            alsoknownasTv.setText(R.string.noAlsoKnownAsFound);
+
+        if (sandwich.getIngredients() != null) {
+            String temp = ingredientsTv.getText().toString();
+            for (String temp1 : sandwich.getIngredients()) {
+                temp = temp.concat(temp1);
+                temp = temp.concat("\n");
+            }
+            temp = temp.trim();
+            ingredientsTv.setText(temp);
+        } else
+            ingredientsTv.setText(R.string.noIngredients);
+
+        if (sandwich.getPlaceOfOrigin() != null)
+            originTv.setText(sandwich.getPlaceOfOrigin());
+
+        if (sandwich.getDescription() != null)
+            descriptionTv.setText(sandwich.getDescription());
+        else
+            descriptionTv.setText(R.string.noDescription);
+
+    }
+
+    public void initViews() {
+        imageIv = findViewById(R.id.image_iv);
+        alsoknownasTv = findViewById(R.id.also_known_tv);
+        ingredientsTv = findViewById(R.id.ingredients_tv);
+        originTv = findViewById(R.id.origin_tv);
+        descriptionTv = findViewById(R.id.description_tv);
     }
 
     @Override
@@ -61,7 +106,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView ingredientsIv = findViewById(R.id.image_iv);
+        initViews();
+
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -88,7 +134,7 @@ public class DetailActivity extends AppCompatActivity {
         populateUI();
         Picasso.with(this)
                 .load(sandwich.getImage())
-                .into(ingredientsIv);
+                .into(imageIv);
 
         setTitle(sandwich.getMainName());
     }

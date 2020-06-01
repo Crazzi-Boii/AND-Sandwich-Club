@@ -7,6 +7,9 @@
     <string name="detail_description_label">Description:</string>
     <string name="detail_ingredients_label">Ingredients:</string>
 
+    <string name="noAlsoKnownAsFound">Not found</string>
+    <string name="noIngredients">Ingredients not available.</string>
+    <string name="noDescription">No description given</string>
     <!-- Content descriptions-->
     <string name="sandwich_picture_content_description">Sandwich picture</string>
 
